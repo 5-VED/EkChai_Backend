@@ -23,12 +23,12 @@ exports.signIn = async (payload) => {
             return {
                 login: false,
                 message: "Waiting for Admin Approval"
-            }
+            }   
         }
         return {
             login: true,
             message: "success",
-            data: user,
+            data: user, 
             accessToken: accessToken
         }
     } else {
