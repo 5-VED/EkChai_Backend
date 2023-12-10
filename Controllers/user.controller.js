@@ -129,7 +129,7 @@ exports.updateStatus = async (req, res) => {
 **/
 exports.changePassword = async (req, res) => {
     try {
-        const email = res.locals.email;
+        const email = res.locals?.email;        
         const result = await User.findOne({ email });
         if (!result) {
             return res.status(StatusCodes.NOT_FOUND).json({ message: 'User does not exist' })
