@@ -7,5 +7,4 @@ const {generatePdf} = require('../Controllers/bill.controller');
 
 router.post('/generatePdf',generatePdf);
 
-
 module.exports = router;

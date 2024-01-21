@@ -1,6 +1,6 @@
 /*
 To Validate Sign up and Sign in Forms
-* */
+**/
 const httpStatusCodes = require('http-status-codes')
 const Joi = require('joi');
 
