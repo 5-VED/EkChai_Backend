@@ -23,7 +23,7 @@ const SignUpValidator = (req, res, next) => {
 
     const { error } = expected.validate(actual)
     if (error) {
-        return res.status(httpStatusCodes.BAD_REQUEST).json({
+        return res.status(httpStatusCodes.StatusCodes.BAD_REQUEST).json({
             error: error.message
         })
     }
@@ -44,11 +44,11 @@ const SignInValidator = (req, res, next) => {
     }
     const { error } = expected.validate(actual)
     if (error) {
-        return res.status(httpStatusCodes.BAD_REQUEST).json({
+        return res.status(httpStatusCodes.StatusCodes.BAD_REQUEST).json({
             error: error.message
         })
     }
-    next();
+    next(); 
 }
 
 module.exports = { SignUpValidator, SignInValidator }

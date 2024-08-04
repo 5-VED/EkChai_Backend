@@ -1,5 +1,5 @@
 const userHelper = require('../Helpers/user.helper');
-const { StatusCodes } = require('http-status-codes');
+    const { StatusCodes } = require('http-status-codes');
 const User = require("../Models/user.model");
 const bcrypt = require("bcrypt");
 
@@ -12,6 +12,7 @@ const bcrypt = require("bcrypt");
 exports.signUp = async (req, res) => {
     try {
         const result = await userHelper.signUp(req.body);
+        console.log("========= result===>", result)
         if (result['userExists']) {
             res.status(StatusCodes.CONFLICT).json({
                 data: result,
@@ -101,7 +102,7 @@ exports.users = async (req, res) => {
 **/
 exports.checkToken = async (req, res) => {
     return res.status(StatusCodes.OK).json({ "message": "true" })
-}   
+}
 
 /**
 * @action API to Update User Status
@@ -129,7 +130,7 @@ exports.updateStatus = async (req, res) => {
 **/
 exports.changePassword = async (req, res) => {
     try {
-        const email = res.locals?.email;        
+        const email = res.locals?.email;
         const result = await User.findOne({ email });
         if (!result) {
             return res.status(StatusCodes.NOT_FOUND).json({ message: 'User does not exist' })

@@ -14,7 +14,10 @@ exports.signIn = async (payload) => {
         isDeleted: false
     })
 
-    let isPasswordCorrect = compareSync(payload.password, user.password);
+    let isPasswordCorrect;
+    if (user) {
+        isPasswordCorrect = compareSync(payload.password, user?.password);
+    }
 
     if (user && isPasswordCorrect) {
         const response = { email: user.email, roles: user.roles }
@@ -23,12 +26,12 @@ exports.signIn = async (payload) => {
             return {
                 login: false,
                 message: "Waiting for Admin Approval"
-            }   
+            }
         }
         return {
             login: true,
             message: "success",
-            data: user, 
+            data: user,
             accessToken: accessToken
         }
     } else {
@@ -53,19 +56,23 @@ exports.signUp = async (payload) => {
         return { userExists: true };
     }
 
-    // Hashing the password
-    let hashedPassword = await hashSync(payload.password, 10);
-    let hashedConfirmPassword = await hashSync(payload.confirmPassword, 10);
 
-    const newUser = await new User({
+    // Hashing the password
+    let hashedPassword = hashSync(payload.password, 10);
+    let hashedConfirmPassword = hashSync(payload.confirmPassword, 10);
+
+
+
+    const newUser = await User.create({
         name: payload.name,
         email: payload.email.toLowerCase(),
         password: hashedPassword,
         confirmPassword: hashedConfirmPassword,
-        roles: payload.roles,
-        status: payload.status
+        roles: payload?.roles,
+        status: payload?.status
     });
-    return newUser.save();
+
+    return newUser
 };
 
 

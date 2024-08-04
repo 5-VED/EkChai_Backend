@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const { signUp, signIn, changePassword, users, checkToken, updateStatus } = require('../Controllers/user.controller');
-const { SignUpValidator, SignInValidator } = require('../Utils/Validators/user.validators')
+const { SignUpValidator, SignInValidator } = require('../Utils/Validators/user.validators').default
 const { authenticateToken, checkRole } = require('../Config/authenticate')
 
 // route to create new User
@@ -15,7 +15,7 @@ router.post('/signin', SignInValidator, signIn);
 router.post('/changePassword', SignInValidator, authenticateToken, changePassword);
 
 // API to get all users
-router.get('/users', authenticateToken, checkRole, users);
+router.get('/users',  users);
 
 // API to Check Authentication token
 router.get('/checktoken', authenticateToken, checkToken);

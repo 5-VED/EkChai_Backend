@@ -1,7 +1,6 @@
 module.exports = {
     testEnvironment: "node",
-    preset: "js-jest",
-    testMatc: ["**/*.test.js"],
+    testMatch: ["**/*.test.js"],
     verbose: true,
     forceExit: true
 }
