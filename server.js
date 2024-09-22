@@ -22,13 +22,15 @@ app.use(require('./Routes/dashboard.route'));
     await connect(DB_CONNECT).then(() => { console.log("Successfuly connected to Data Base") }).catch((error) => {
         console.log('Error Connecting to Database :- ' + error)
     })
+
 })()
 
 
-const server = http.createServer(app);
-server.listen(PORT); // or your desired port
+app.listen(PORT, () => {
+    console.log(`Server listening at ${PORT}`)
+})
 
-module.exports = server; // Export the server instance
+module.exports = app;
 
 
 

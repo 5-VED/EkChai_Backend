@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const { signUp, signIn, changePassword, users, checkToken, updateStatus } = require('../Controllers/user.controller');
-const { SignUpValidator, SignInValidator } = require('../Utils/Validators/user.validators').default
+const { SignUpValidator, SignInValidator } = require('../Utils/Validators/user.validators')
 const { authenticateToken, checkRole } = require('../Config/authenticate')
 
 // route to create new User
